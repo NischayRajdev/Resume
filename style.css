@@ -1,0 +1,394 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: #FAFAF7;
+  --bg-raised: #F1F0EA;
+  --text: #1B1B18;
+  --text-dim: #5A594F;
+  --border: #DEDCD1;
+  --accent: #4F6D66;
+  --accent-text: #FAFAF7;
+
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', 'Roboto Mono', Consolas, monospace;
+
+  --content-width: 640px;
+  --radius: 3px;
+}
+
+html[data-theme="dark"] {
+  --bg: #101110;
+  --bg-raised: #1A1B19;
+  --text: #ECEBE4;
+  --text-dim: #9B9A8F;
+  --border: #303129;
+  --accent: #8FBBAF;
+  --accent-text: #101110;
+}
+
+/* ---------- Reset ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+a {
+  color: var(--text);
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+/* ---------- Layout ---------- */
+.page {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 88px 24px 64px;
+}
+
+.section {
+  margin-top: 72px;
+}
+
+.section-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+
+/* ---------- Theme toggle ---------- */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.toggle-track {
+  display: block;
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+  position: relative;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.25s ease;
+}
+
+html[data-theme="dark"] .toggle-thumb {
+  transform: translateX(20px);
+}
+
+.theme-toggle:hover .toggle-track {
+  border-color: var(--accent);
+}
+
+.theme-toggle:hover .toggle-thumb {
+  transform: scale(1.1);
+}
+
+html[data-theme="dark"] .theme-toggle:hover .toggle-thumb {
+  transform: translateX(20px) scale(1.1);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+  border-color: var(--accent);
+}
+
+.name {
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.tagline {
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  margin-top: -10px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.links a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-raised);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.links a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- About ---------- */
+.about-text {
+  color: var(--text);
+  font-size: 0.95rem;
+  max-width: 62ch;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 36px;
+}
+
+.mini-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.tag-list li {
+  font-size: 0.9rem;
+  padding: 6px 0 6px 0;
+  border-top: 1px solid var(--border);
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.tag-list li:first-child {
+  border-top: none;
+}
+
+.tag-list li:hover {
+  color: var(--accent);
+  padding-left: 6px;
+}
+
+/* ---------- Timeline ---------- */
+.timeline {
+  position: relative;
+  padding-left: 76px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 52px;
+  width: 1px;
+  background: var(--border);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 30px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-year {
+  position: absolute;
+  left: -76px;
+  top: 1px;
+  width: 40px;
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  transition: color 0.25s ease;
+}
+
+.timeline-item::after {
+  content: "";
+  position: absolute;
+  left: -24.5px;
+  top: 5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: transform 0.25s ease;
+}
+
+.timeline-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.timeline-desc {
+  font-size: 0.88rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+  max-width: 56ch;
+}
+
+/* Hover state: whole card lifts + highlights */
+.timeline-body {
+  padding: 10px 14px;
+  margin: -10px -14px;
+  border-radius: var(--radius);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.timeline-item:hover .timeline-body {
+  background: var(--bg-raised);
+  transform: translateX(4px);
+}
+
+.timeline-item:hover::after {
+  transform: scale(1.5);
+}
+
+.timeline-item:hover .timeline-year {
+  color: var(--accent);
+}
+
+/* ---------- Scroll reveal (roadmap entries fly in from corners) ---------- */
+.timeline-item.reveal {
+  opacity: 0;
+  transform: translate3d(-48px, 32px, 0);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.timeline-item.reveal:nth-child(even) {
+  transform: translate3d(48px, 32px, 0);
+}
+
+.timeline-item.reveal.in-view {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  margin-top: 80px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a {
+  color: var(--text-dim);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 560px) {
+  .page {
+    padding: 56px 18px 48px;
+  }
+
+  .two-col {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .timeline {
+    padding-left: 56px;
+  }
+
+  .timeline::before {
+    left: 34px;
+  }
+
+  .timeline-year {
+    left: -56px;
+    width: 30px;
+  }
+
+  .timeline-item::after {
+    left: -6.5px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+
+  .timeline-item.reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Fallback: if JS never runs, don't leave the roadmap invisible */
+.no-js .timeline-item.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Focus visibility ---------- */
+a:focus-visible,
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
